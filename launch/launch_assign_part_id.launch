@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="part" pkg="ros_votepose" type="part_node" cwd="node">
+  <param name="data_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/BOP-models/gear/"/>
+  <rosparam param="objects_name"> [1-points-10k, 2-points-10k]</rosparam> 
+  </node>
+</launch>

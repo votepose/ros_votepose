@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="object_pose" pkg="ros_votepose" type="votepose_node" cwd="node">
+  
+  <param name="method" value="2"/> <!-- 0: depth2points + show gt poses, 1: compute overlap points, 2: assign semantic, instance and part ids -->
+
+  <param name="data_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/"/>
+  <rosparam param="list_objects"> [brick, bunny, candlestick, gear, pepper, tless_20, tless_22, tless_29]</rosparam>
+
+  <param name="depth_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/gear/depth/"/>
+  <param name="pc_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/gear/pointcloud/"/>
+  <param name="pose_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/gear/gt-txt/"/>
+  <param name="save_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/gear/predicted/baseline/"/>
+  <param name="overlap_dir" value="/media/hoang/HD-PZFU3/BOP/Sileane/gear/overlap-points/"/>
+
+  <param name="listname_path" value="/home/hoang/Orebro-Study/Manuscripts/ICCV2021/data/experiment/gear/list_names_full.txt"/>
+  <param name="model_path" value="/media/hoang/HD-PZFU3/BOP/Sileane/gear/parts_with_id.ply"/>
+
+  <param name="overlap_min" value="0.35"/> 
+  <param name="semantic_id" value="4"/>
+  <param name="num_parts" value="2"/> 
+
+  <param name="fx" value="545"/>
+  <param name="fy" value="545"/>
+  <param name="cx" value="316.0"/>
+  <param name="cy" value="244.0"/>
+  <param name="clip_start" value="0.0"/>
+  <param name="clip_end" value="65536"/>
+  <param name="depth_factor" value="65535"/>
+  <rosparam param="camera_location"> [0, 0, 0]</rosparam>
+  <rosparam param="camera_rot"> [1, 0, 0, 0]</rosparam>
+
+  <param name="z_max" value="0.5"/>
+  <param name="z_min" value="-0.1"/>
+  
+  </node>
+   <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_votepose)/launch/bop.rviz"/>
+</launch>
